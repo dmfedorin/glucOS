@@ -1,18 +1,34 @@
 [org 0x7c00]
+[bits 16]
 
 	section .text
 
-		jmp boot.entry
+			jmp boot.entry
 
-boot.hang:	jmp $
+%include "src/boot/string.asm"
 
-db boot.hello_world "hello world", 0xa, 0
+boot.hang_msg db "hanging...", 0xa
 
-boot.entry:	mov ah, 0x0e
-		mov al, 'h'
-		int 0x10
+boot.hang:		mov bx, boot.hang_msg
+			mov cx, 11
+			call string.print
 
-		jmp boot.hang
+			jmp $
+
+boot.setup:		mov bp, 0x7bff
+			mov sp, bp
+			ret
+
+boot.hello_world db "hello world", 0xa
+
+boot.entry:		call boot.setup
+
+			mov bx, boot.hello_world
+			mov cx, 12
+			call string.print
+
+			jmp boot.hang
 
 ; bootsector padding
 times 510 - ($ - $$) db 0
+dw 0xaa55
