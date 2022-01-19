@@ -1,3 +1,6 @@
+%ifndef GDT_ASM_INCLUDED
+%define GDT_ASM_INCLUDED
+
 [bits 16]
 
 	section .text
@@ -39,3 +42,5 @@ gdt_desc:
 
 GDT_CODE_SEG equ gdt_code_entry - gdt_start
 GDT_DATA_SEG equ gdt_data_entry - gdt_start
+
+%endif

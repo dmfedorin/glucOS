@@ -1,3 +1,6 @@
+%ifndef STRING_ASM_INCLUDED
+%define STRING_ASM_INCLUDED
+
 [bits 16]
 
 	section .text
@@ -20,3 +23,5 @@ _print_begin:		mov al, byte [bx]
 			pop ax
 
 			ret
+
+%endif
