@@ -3,32 +3,31 @@
 
 	section .text
 
-			jmp boot.entry
+			jmp boot_entry
 
 %include "src/boot/string.asm"
+%include "src/boot/gdt.asm"
 
-boot.hang_msg db "hanging...", 0xa
+boot_hang_msg:
+	db "[...] hanging", 0xd, 0xa, 0
 
-boot.hang:		mov bx, boot.hang_msg
-			mov cx, 11
-			call string.print
-
+boot_hang:		mov bx, boot_hang_msg
+			call string_print
+			
+			cli
 			jmp $
 
-boot.setup:		mov bp, 0x7bff
+boot_boot_msg:
+	db "[...] booting glucOS", 0xd, 0xa, 0
+
+boot_entry:		mov bp, 0x7bff
 			mov sp, bp
-			ret
 
-boot.hello_world db "hello world", 0xa
+			mov bx, boot_boot_msg
+			call string_print
 
-boot.entry:		call boot.setup
+			jmp boot_hang
 
-			mov bx, boot.hello_world
-			mov cx, 12
-			call string.print
-
-			jmp boot.hang
-
-; bootsector padding
-times 510 - ($ - $$) db 0
-dw 0xaa55
+	; bootsector padding
+	times 510 - ($ - $$) db 0
+	dw 0xaa55

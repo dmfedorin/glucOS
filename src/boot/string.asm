@@ -2,23 +2,20 @@
 
 	section .text
 
-; pointer to string should be in bx
-; length of string should be in cx
-string.print:		push ax
+; pointer to null terminated string should be in bx
+string_print:		push ax
 			push bx
-			push cx
 
 			mov ah, 0xe
 
-_string.print.loop:	mov al, byte [bx]
+_print_begin:		mov al, byte [bx]
 
-			int 0xa
+			int 0x10
 			inc bx
 
-			cmp bx, cx
-			jl _string.print.loop
+			cmp byte [bx], 0
+			jne _print_begin
 
-			pop cx
 			pop bx
 			pop ax
 
