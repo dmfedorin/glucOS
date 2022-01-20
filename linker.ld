@@ -1,21 +1,27 @@
 OUTPUT_FORMAT(binary)
+INPUT(
+	build/imed/kentry.o
+	build/imed/kmain.o
+	build/imed/dvga.o
+)
 
 SECTIONS {
-	. = 0x7e00;
+	. = 0x1000;
 	
-	.text BLOCK(8K) : ALIGN(8K) {
+	.text BLOCK(4K) : ALIGN(4K) {
 		*(.text)
 	}
 
-	.rodata BLOCK(8K) : ALIGN(8K) {
+	.rodata BLOCK(4K) : ALIGN(4K) {
 		*(.rodata)
 	}
 
-	.data BLOCK(8K) : ALIGN(8K) {
+	.data BLOCK(4K) : ALIGN(4K) {
 		*(.data)
 	}
 
-	.bss BLOCK(8K) : ALIGN(8K) {
+	.bss BLOCK(4K) : ALIGN(4K) {
+		*(COMMON)
 		*(.bss)
 	}
 }

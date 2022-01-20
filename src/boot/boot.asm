@@ -6,7 +6,7 @@
 
 	section .text
 
-boot_setup:		xor ax, ax
+			xor ax, ax
 			mov ds, ax
 			mov es, ax
 			
@@ -16,8 +16,9 @@ boot_setup:		xor ax, ax
 			jmp boot_entry
 
 %include "src/boot/string.asm"
-%include "src/boot/gdt.asm"
 %include "src/boot/enter32.asm"
+
+[bits 16]
 
 boot_hello_msg:
 	db "[...] booting glucOS", 0xd, 0xa, 0
@@ -30,8 +31,7 @@ boot_entry:		mov [boot_drive], dl
 			mov bx, boot_hello_msg
 			call string_print
 
-			cli
-			jmp $
+			jmp enter32_enter_32
 
 	; bootsector padding
 	times 510 - ($ - $$) db 0
