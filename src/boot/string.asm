@@ -11,13 +11,13 @@ string_print:		push ax
 
 			mov ah, 0xe
 
-_print_begin:		mov al, byte [bx]
+.print_begin:		mov al, byte [bx]
 
 			int 0x10
 			inc bx
 
 			cmp byte [bx], 0
-			jne _print_begin
+			jne .print_begin
 
 			pop bx
 			pop ax

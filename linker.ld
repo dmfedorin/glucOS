@@ -1,8 +1,13 @@
 OUTPUT_FORMAT(binary)
 INPUT(
-	build/imed/kentry.o
-	build/imed/kmain.o
-	build/imed/dvga.o
+	build/imed/entry.o
+	build/imed/main.o
+
+	/* terminal */
+	build/imed/termio.o
+
+	/* memman */
+	build/imed/heap.o
 )
 
 SECTIONS {
