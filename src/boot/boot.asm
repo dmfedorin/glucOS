@@ -4,37 +4,40 @@
 [org 0x7c00]
 [bits 16]
 
-	section .text
+        section .text
 
-			xor ax, ax
-			mov ds, ax
-			mov es, ax
-			
-			mov ss, ax
-			mov sp, 0x7c00
+                        xor ax, ax
+                        mov ds, ax
+                        mov es, ax
+                        
+                        mov ss, ax
+                        mov sp, 0x7c00
 
-			jmp boot_entry
+                        jmp boot_entry
 
 %include "src/boot/string.asm"
+%include "src/boot/memory.asm"
 %include "src/boot/enter32.asm"
 
 [bits 16]
 
 boot_hello_msg:
-	db "[...] booting glucOS", 0xd, 0xa, 0
+        db "[...] booting glucOS", 0xd, 0xa, 0
 
 boot_drive:
-	db 0
+        db 0
 
 boot_entry:		mov [boot_drive], dl
 
-			mov bx, boot_hello_msg
-			call string_print
+                        mov bx, boot_hello_msg
+                        call string_print
 
-			jmp enter32_enter_32
+                        call memory_detect
 
-	; bootsector padding
-	times 510 - ($ - $$) db 0
-	dw 0xaa55
+                        jmp enter32_enter_32
+
+        ; bootsector padding
+        times 510 - ($ - $$) db 0
+        dw 0xaa55
 
 %endif

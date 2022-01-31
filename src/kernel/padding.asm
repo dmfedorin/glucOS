@@ -3,8 +3,8 @@
 
 [bits 16]
 
-	section .text
+        section .text
 
 PADDING_SECTOR_COUNT equ 32
 
-	times PADDING_SECTOR_COUNT * 512 db 0
+        times PADDING_SECTOR_COUNT * 512 db 0

@@ -3,25 +3,25 @@
 
 [bits 16]
 
-	section .text
+        section .text
 
 ; pointer to null terminated string should be in bx
-string_print:		push ax
-			push bx
+string_print:           push ax
+                        push bx
 
-			mov ah, 0xe
+                        mov ah, 0xe
 
-.print_begin:		mov al, byte [bx]
+.print_begin:           mov al, byte [bx]
 
-			int 0x10
-			inc bx
+                        int 0x10
+                        inc bx
 
-			cmp byte [bx], 0
-			jne .print_begin
+                        cmp byte [bx], 0
+                        jne .print_begin
 
-			pop bx
-			pop ax
+                        pop bx
+                        pop ax
 
-			ret
+                        ret
 
 %endif

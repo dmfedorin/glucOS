@@ -1,6 +1,6 @@
 [bits 32]
 [extern krnl_main]
 
-	section .text
+        section .text
 
-			jmp krnl_main
+                        jmp krnl_main
