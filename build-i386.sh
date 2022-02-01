@@ -1,7 +1,5 @@
 nasm -o build/imed/boot.bin -f bin src/boot/boot.asm
 
-# test 2
-
 # build kernel
 # {
         nasm -o build/imed/entry.o -f elf32 src/kernel/entry.asm
