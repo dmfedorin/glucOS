@@ -1,3 +1,0 @@
-correcting cursor position:
-	row += col / vga width
-	col %= vga width

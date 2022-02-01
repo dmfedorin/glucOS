@@ -1,9 +1,0 @@
-glucos binary:
-	boot
-	kernel
-	kpadding
-
-boot gets loaded at 0x7c00, reads kernel into 0x1000,
-and starts execution
-
-kpadding is there to prevent disk error when reading kernel

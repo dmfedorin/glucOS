@@ -1,3 +1,0 @@
-boot process:
-	bootloader found
-	load kernel from disk in real mode
