@@ -13,7 +13,7 @@ memory_detect_msg:
 memory_detect_error_msg:
         db "[..X] memory detection error", 0xd, 0xa, 0
 
-MEMORY_LIST_DEST_SEGMENT equ 0x7e0
+MEMORY_LIST_DEST_SEGMENT_ADDR equ 0x7e0
 MEMORY_LIST_ENTRY_SIZE equ 24
 
 memory_detect_error:    mov bx, memory_detect_error_msg
@@ -30,7 +30,7 @@ memory_detect:          push eax
                         mov bx, memory_detect_msg
                         call string_print
 
-                        mov ax, MEMORY_LIST_DEST_SEGMENT
+                        mov ax, MEMORY_LIST_DEST_SEGMENT_ADDR
                         mov es, ax
                         
                         xor ebx, ebx

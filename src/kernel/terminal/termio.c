@@ -85,7 +85,7 @@ void term_print_hex(uint64_t n)
 {
         term_print("0x");
 
-        for (int i = sizeof(uint64_t); i >= 0; i--) {
+        for (int i = sizeof(uint64_t) - 1; i >= 0; i--) {
                 uint8_t *p = (uint8_t *)&n + i;
                 put_hex(*p);
         }

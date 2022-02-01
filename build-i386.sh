@@ -11,9 +11,9 @@ nasm -o build/imed/boot.bin -f bin src/boot/boot.asm
                 i386-elf-gcc -o build/imed/termio.o -c src/kernel/terminal/termio.c -std=gnu99 -ffreestanding
         # }
 
-        # build memman
+        # build memory
         # {
-                i386-elf-gcc -o build/imed/heap.o -c src/kernel/memman/heap.c -std=gnu99 -ffreestanding
+                i386-elf-gcc -o build/imed/layout.o -c src/kernel/memory/layout.c -std=gnu99 -ffreestanding
         # }
 # }
 
@@ -21,4 +21,4 @@ i386-elf-gcc -T linker.ld -o build/imed/kernel.bin -ffreestanding -nostdlib -lgc
 
 cat build/imed/boot.bin build/imed/kernel.bin build/imed/padding.bin > build/final/glucOS.bin
 
-qemu-system-x86_64 --drive format=raw,file=build/final/glucOS.bin
+qemu-system-x86_64 --drive format=raw,file=build/final/glucOS.bin -m 4G
