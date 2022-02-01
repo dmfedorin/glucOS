@@ -2,19 +2,19 @@ nasm -o build/imed/boot.bin -f bin src/boot/boot.asm
 
 # build kernel
 # {
-	nasm -o build/imed/entry.o -f elf32 src/kernel/entry.asm
-	i386-elf-gcc -o build/imed/main.o -c src/kernel/main.c -std=gnu99 -ffreestanding
-	nasm -o build/imed/padding.bin -f bin src/kernel/padding.asm
+        nasm -o build/imed/entry.o -f elf32 src/kernel/entry.asm
+        i386-elf-gcc -o build/imed/main.o -c src/kernel/main.c -std=gnu99 -ffreestanding
+        nasm -o build/imed/padding.bin -f bin src/kernel/padding.asm
 
-	# build terminal
-	# {
-		i386-elf-gcc -o build/imed/termio.o -c src/kernel/terminal/termio.c -std=gnu99 -ffreestanding
-	# }
+        # build terminal
+        # {
+                i386-elf-gcc -o build/imed/termio.o -c src/kernel/terminal/termio.c -std=gnu99 -ffreestanding
+        # }
 
-	# build memman
-	# {
-		i386-elf-gcc -o build/imed/heap.o -c src/kernel/memman/heap.c -std=gnu99 -ffreestanding
-	# }
+        # build memman
+        # {
+                i386-elf-gcc -o build/imed/heap.o -c src/kernel/memman/heap.c -std=gnu99 -ffreestanding
+        # }
 # }
 
 i386-elf-gcc -T linker.ld -o build/imed/kernel.bin -ffreestanding -nostdlib -lgcc
