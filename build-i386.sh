@@ -1,6 +1,6 @@
 nasm -o build/imed/boot.bin -f bin src/boot/boot.asm
 
-# test
+# test 2
 
 # build kernel
 # {
