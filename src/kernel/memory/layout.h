@@ -15,7 +15,7 @@ enum mem_layout_entry_type {
 
 struct mem_layout_entry {
         uint64_t base, size;
-        uint32_t type, apci_ext_attr;
+        uint32_t type, acpi_ext_attr;
 } __attribute__ ((packed));
 
 void mem_get_layout(struct mem_layout_entry *entries, uint32_t entry_cnt);

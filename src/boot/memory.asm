@@ -49,7 +49,7 @@ memory_detect:          push eax
                         ; first uint64 of list entry is base address
                         ; second uint64 of list entry is region size
                         ; first uint32 of list entry is region type
-                        ; last uint32 of list entry is apci extended attrs
+                        ; last uint32 of list entry is acpi extended attrs
                         add di, MEMORY_LIST_ENTRY_SIZE
 
                         cmp ebx, 0
