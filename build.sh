@@ -21,4 +21,4 @@ i686-elf-gcc -T linker.ld -o build/imed/kernel.bin -ffreestanding -nostdlib -lgc
 
 cat build/imed/boot.bin build/imed/kernel.bin build/imed/padding.bin > build/final/glucOS.bin
 
-qemu-system-x86_64 --drive format=raw,file=build/final/glucOS.bin -m 4G
+qemu-system-x86_64 --drive format=raw,file=build/final/glucOS.bin -m 1G

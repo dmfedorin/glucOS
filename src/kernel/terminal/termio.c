@@ -1,8 +1,8 @@
 #include "termio.h"
 
-static inline __attribute__ ((always_inline)) uint8_t col_to_attr(
-        enum term_color fg,
-        enum term_color bg)
+static inline __attribute__ ((always_inline))
+uint8_t col_to_attr(enum term_color fg,
+                    enum term_color bg)
 {
         return bg << 4 | fg;
 }
@@ -57,22 +57,8 @@ void term_print(const char *s)
 }
 
 const char hex_print_map[16] = {
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
+        '0', '1', '2', '3', '4', '5', '6', '7',
+        '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
 };
 
 static inline __attribute__ ((always_inline)) void put_hex(uint8_t h)
